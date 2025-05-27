@@ -25,8 +25,8 @@ export default function InputField({
   success = false,
 }: InputFieldProps) {
   return (
-    <div className="flex flex-col">
-      <label htmlFor={id} className="mb-2 text-sm font-medium">
+    <div className="flex flex-col space-y-1">
+      <label htmlFor={id} className="text-sm font-medium text-gray-700">
         {label}
       </label>
       <input
@@ -37,12 +37,16 @@ export default function InputField({
         required={required}
         disabled={disabled}
         aria-describedby={`${id}-error`}
-        className="peer w-50 rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+        className={`w-full rounded-lg border border-gray-300 py-2 px-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed transition-colors duration-200 ${
+          errorMessage && !success ? "border-red-500" : ""
+        } ${success ? "border-green-500" : ""}`}
       />
       {errorMessage && (
         <p
           id={`${id}-error`}
-          className={`text-sm ${success ? "text-green-600" : "text-red-500"}`}
+          className={`text-xs font-medium ${
+            success ? "text-green-600" : "text-red-600"
+          } mt-1`}
           role="alert"
         >
           {errorMessage}

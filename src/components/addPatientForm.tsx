@@ -43,16 +43,18 @@ export default function AddPatientForm() {
     <form
       action={(formData) => startTransition(() => formAction(formData))}
       ref={formRef}
-      className="flex flex-col gap-4 rounded-md border border-gray-200 p-6 shadow"
+      className="w-full max-w-md mx-auto flex flex-col gap-6 rounded-xl border border-gray-200 bg-white p-8 shadow-sm"
     >
       <fieldset>
-        <legend className="mb-4 text-lg font-semibold">Add New Patient</legend>
+        <legend className="mb-4 text-xl font-semibold text-gray-800">
+          Add New Patient
+        </legend>
 
         <InputField
           label="Name:"
           id="name"
           name="name"
-          placeholder="Enter patient name"
+          placeholder="Robertino Capuchino"
           disabled={isPending}
           errorMessage={showMessage ? state.message : ""}
           success={state.success}
@@ -61,7 +63,7 @@ export default function AddPatientForm() {
 
       <button
         type="submit"
-        className="w-fit rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-blue-300"
+        className="w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-blue-400 disabled:cursor-not-allowed transition-colors duration-200"
         disabled={isPending}
         aria-busy={isPending}
       >
