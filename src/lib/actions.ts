@@ -1,3 +1,5 @@
+//src/lib/actions.ts
+
 "use server";
 
 import { supabase } from "@/lib/supabase";
@@ -9,7 +11,7 @@ type State = {
 };
 
 export async function addPatient(
-  _prevState: State,
+  prevState: State,
   formData: FormData
 ): Promise<State> {
   const name = formData.get("name");

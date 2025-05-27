@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { addPatient } from "@/actions/addPatientAction";
+import { addPatient } from "@/lib/actions";
 
 const initialState = {
   success: false,
