@@ -1,19 +1,11 @@
 "use client";
+import { addPatient } from "@/actions/addPatientAction";
 
 export default function AddPatientForm() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const name = formData.get("name") as string;
-
-    // Here you would typically send the data to your server
-    console.log("Patient added:", name);
-  };
-
   return (
     <form
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-4 rounded-md border border-gray-200 p-6 shadow-xl"
+      action={addPatient}
+      className="flex flex-col gap-4 rounded-md border border-gray-200 p-6 shadow"
     >
       <legend className="mb-4 text-lg font-semibold">Add New Patient</legend>
       <div>
@@ -25,7 +17,6 @@ export default function AddPatientForm() {
           type="text"
           id="name"
           name="name"
-          required
         />
       </div>
       <button className="w-fit rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
