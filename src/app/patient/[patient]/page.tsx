@@ -4,15 +4,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface PatientDetailProps {
-  params: {
+  params: Promise<{
     patient: string;
-  };
+  }>;
 }
 
 export default async function PatientDetailPage({
   params,
 }: PatientDetailProps) {
-  const patientId = params.patient;
+  const resolvedParams = await params;
+  const patientId = resolvedParams.patient;
 
   // Validar que el ID sea un UUID válido (opcional)
   const uuidRegex =
