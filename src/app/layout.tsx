@@ -1,7 +1,6 @@
-// src/app/layout.tsx (ACTUALIZADO)
+// 1. src/app/layout.tsx (Root Layout - SIN sidebar)
 import type { Metadata } from "next";
 import "./globals.css";
-import Layout from "@/components/layout";
 
 export const metadata: Metadata = {
   title: "Domi Health",
@@ -15,9 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        <Layout>{children}</Layout>
-      </body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

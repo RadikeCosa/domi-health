@@ -1,4 +1,4 @@
-// src/app/page.tsx (ACTUALIZADO)
+// 2. src/app/page.tsx (Homepage - SIN sidebar)
 import PageHeader from "@/components/pageHeader";
 import Card from "@/components/card";
 import Button from "@/components/button";
@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div>
+    <div className="min-h-screen bg-gray-50">
       <PageHeader
         title="Welcome to Domi Health"
         subtitle="Your comprehensive healthcare management solution"
