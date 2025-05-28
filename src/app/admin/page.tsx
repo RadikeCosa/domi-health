@@ -1,5 +1,4 @@
 import AddPatientForm from "@/components/addPatientForm";
-import PatientList from "@/components/patientList";
 import Link from "next/link";
 
 export default function AdminPage() {
@@ -7,8 +6,9 @@ export default function AdminPage() {
     <div>
       <h1>Admin Dashboard</h1>
       <AddPatientForm />
-      <PatientList />
+
       <Link href="/">Go to Home</Link>
+      <Link href="/patient">Go to Patient List</Link>
     </div>
   );
 }
