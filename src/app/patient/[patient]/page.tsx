@@ -1,7 +1,10 @@
-// src/app/patient/[patient]/page.tsx
+// src/app/patient/[patient]/page.tsx (ACTUALIZADO)
 import { getPatientById } from "@/lib/actions";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import PageHeader from "@/components/pageHeader";
+import Card from "@/components/card";
+import Button from "@/components/button";
+import Link from "next/link";
 
 interface PatientDetailProps {
   params: Promise<{
@@ -15,7 +18,6 @@ export default async function PatientDetailPage({
   const resolvedParams = await params;
   const patientId = resolvedParams.patient;
 
-  // Validar que el ID sea un UUID válido (opcional)
   const uuidRegex =
     /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
   if (!uuidRegex.test(patientId)) {
@@ -29,52 +31,106 @@ export default async function PatientDetailPage({
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-6">
-        <Link
-          href="/patient"
-          className="text-blue-600 hover:text-blue-800 underline mb-4 inline-block"
-        >
-          ← Back to Patient List
+    <div>
+      <PageHeader title={patient.name} subtitle="Patient Information">
+        <Link href="/patient">
+          <Button variant="outline">← Back to Patients</Button>
         </Link>
-      </div>
+      </PageHeader>
 
-      <div className="bg-white shadow-lg rounded-lg p-6">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">
-          Patient Details
-        </h1>
+      <div className="p-6">
+        <div className="max-w-4xl mx-auto space-y-6">
+          {/* Patient Info Card */}
+          <Card className="p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+              Basic Information
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Full Name
+                </label>
+                <p className="text-base text-gray-900 bg-gray-50 px-3 py-2 rounded-md">
+                  {patient.name}
+                </p>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Patient ID
+                </label>
+                <p className="text-sm text-gray-600 font-mono bg-gray-50 px-3 py-2 rounded-md">
+                  {patient.id}
+                </p>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Registration Date
+                </label>
+                <p className="text-sm text-gray-600 bg-gray-50 px-3 py-2 rounded-md">
+                  {new Date(patient.created_at).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </p>
+              </div>
+            </div>
+          </Card>
 
-        <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Name
-            </label>
-            <p className="text-lg text-gray-900">{patient.name}</p>
-          </div>
+          {/* Future Features Placeholder */}
+          <Card className="p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+              Medical Records
+            </h2>
+            <div className="text-center py-8 border-2 border-dashed border-gray-200 rounded-lg">
+              <div className="text-gray-400 mb-2">
+                <svg
+                  className="mx-auto h-8 w-8"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
+                </svg>
+              </div>
+              <p className="text-sm text-gray-500">
+                Medical records and history will be available here soon.
+              </p>
+            </div>
+          </Card>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Patient ID
-            </label>
-            <p className="text-sm text-gray-600 font-mono">{patient.id}</p>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Created At
-            </label>
-            <p className="text-sm text-gray-600">
-              {new Date(patient.created_at).toLocaleString()}
-            </p>
-          </div>
-        </div>
-
-        {/* Placeholder para futuras funciones */}
-        <div className="mt-8 pt-6 border-t border-gray-200">
-          <p className="text-sm text-gray-500 italic">
-            Additional patient information and actions will be added here in the
-            future.
-          </p>
+          <Card className="p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+              Appointments
+            </h2>
+            <div className="text-center py-8 border-2 border-dashed border-gray-200 rounded-lg">
+              <div className="text-gray-400 mb-2">
+                <svg
+                  className="mx-auto h-8 w-8"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <p className="text-sm text-gray-500">
+                Appointment scheduling will be available here soon.
+              </p>
+            </div>
+          </Card>
         </div>
       </div>
     </div>

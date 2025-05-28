@@ -1,6 +1,7 @@
-// src/app/layout.tsx
+// src/app/layout.tsx (ACTUALIZADO)
 import type { Metadata } from "next";
 import "./globals.css";
+import Layout from "@/components/layout";
 
 export const metadata: Metadata = {
   title: "Domi Health",
@@ -14,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="antialiased">
+        <Layout>{children}</Layout>
+      </body>
     </html>
   );
 }
