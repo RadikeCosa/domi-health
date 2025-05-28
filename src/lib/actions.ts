@@ -1,8 +1,8 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { supabase } from "@/lib/supabase";
 import { patientSchema } from "@/schemas/patientSchema";
+import { revalidatePath } from "next/cache";
 
 // Tipo exportado para reusarlo en el componente cliente
 export type State = {
@@ -57,14 +57,26 @@ export async function addPatient(
     };
   }
 
-  // Revalidar la caché de la ruta de pacientes
-  revalidatePath("/patients");
-
-  // Redirigir a la lista de pacientes (opcional, descomentar si aplica)
-  // redirect("/patients");
-
+  revalidatePath("/admin"); // Revalidar la ruta para actualizar la lista de pacientes
   return {
     success: true,
     message: "Patient added successfully!",
   };
+}
+/**
+ * Fetches all patients from the database.
+ * @returns A promise resolving to the list of patients.
+ * @throws Error if fetching patients fails.
+ */
+export async function getPatients() {
+  const { data, error } = await supabase
+    .from("patients")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    throw new Error("Error fetching patients: " + error.message);
+  }
+
+  return data;
 }
