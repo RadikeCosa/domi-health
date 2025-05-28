@@ -1,3 +1,4 @@
+// src/lib/actions.ts
 "use server";
 
 import { supabase } from "@/lib/supabase";
@@ -8,6 +9,13 @@ import { revalidatePath } from "next/cache";
 export type State = {
   success: boolean;
   message: string;
+};
+
+// Tipo para Patient
+export type Patient = {
+  id: string;
+  name: string;
+  created_at: string;
 };
 
 /**
@@ -57,18 +65,19 @@ export async function addPatient(
     };
   }
 
-  revalidatePath("/admin"); // Revalidar la ruta para actualizar la lista de pacientes
+  revalidatePath("/patient"); // Cambié a /patient para que coincida con tu ruta
   return {
     success: true,
     message: "Patient added successfully!",
   };
 }
+
 /**
  * Fetches all patients from the database.
  * @returns A promise resolving to the list of patients.
  * @throws Error if fetching patients fails.
  */
-export async function getPatients() {
+export async function getPatients(): Promise<Patient[]> {
   const { data, error } = await supabase
     .from("patients")
     .select("*")
@@ -76,6 +85,29 @@ export async function getPatients() {
 
   if (error) {
     throw new Error("Error fetching patients: " + error.message);
+  }
+
+  return data || [];
+}
+
+/**
+ * Fetches a single patient by ID.
+ * @param id - Patient ID
+ * @returns A promise resolving to the patient data or null if not found.
+ */
+export async function getPatientById(id: string): Promise<Patient | null> {
+  const { data, error } = await supabase
+    .from("patients")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    if (error.code === "PGRST116") {
+      // No rows returned
+      return null;
+    }
+    throw new Error("Error fetching patient: " + error.message);
   }
 
   return data;
