@@ -3,7 +3,7 @@
 > **Healthcare Management System**
 > Bridging the gap between traditional healthcare and modern technology
 
-**Domi Health** es una plataforma integral de gestión sanitaria diseñada para optimizar la administración de pacientes y los flujos de trabajo en salud. Nace de más de 20 años de experiencia en kinesiología y una pasión por el desarrollo web moderno.
+**Domi Health** es una plataforma integral de gestión sanitaria diseñada para optimizar la administración de pacientes y los flujos de trabajo en la practica domiciliaria. Nace de más de 20 años de experiencia en kinesiología y una pasión por el desarrollo web moderno.
 
 ---
 
