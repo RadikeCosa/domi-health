@@ -1,4 +1,4 @@
-// 2. src/app/page.tsx (Homepage - SIN sidebar)
+// src/app/page.tsx
 import PageHeader from "@/components/pageHeader";
 import Card from "@/components/card";
 import Button from "@/components/button";
@@ -17,7 +17,7 @@ export default function Home() {
           <Card className="p-8 text-center">
             <div className="mx-auto max-w-md">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                Getting Started
+                Domi Health
               </h2>
               <p className="text-gray-600 mb-6">
                 Manage your patients and healthcare data efficiently with our
@@ -43,8 +43,12 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
             <Card className="p-6">
               <div className="text-center">
-                <div className="text-2xl font-bold text-blue-600">24/7</div>
-                <div className="text-sm text-gray-600">Available Support</div>
+                <div className="text-2xl font-bold text-blue-600">
+                  Assessments
+                </div>
+                <div className="text-sm text-gray-600">
+                  Easy to use common assessments
+                </div>
               </div>
             </Card>
             <Card className="p-6">

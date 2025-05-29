@@ -1,4 +1,3 @@
-// src/components/Button.tsx
 interface ButtonProps {
   children: React.ReactNode;
   variant?: "primary" | "secondary" | "outline";
