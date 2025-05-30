@@ -53,8 +53,12 @@ export default function Home() {
             </Card>
             <Card className="p-6">
               <div className="text-center">
-                <div className="text-2xl font-bold text-green-600">Secure</div>
-                <div className="text-sm text-gray-600">Data Protection</div>
+                <div className="text-2xl font-bold text-green-600 hover:text-green-700">
+                  <Link href="https://docs-domi-health.vercel.app/">
+                    Documentation
+                  </Link>
+                </div>
+                <div className="text-sm text-gray-600">Full Complete</div>
               </div>
             </Card>
             <Card className="p-6">

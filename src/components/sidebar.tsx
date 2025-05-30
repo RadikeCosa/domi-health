@@ -60,9 +60,15 @@ export default function Sidebar() {
       </nav>
 
       {/* Footer */}
-      <div className="border-t border-gray-200 p-4">
-        <div className="text-xs text-gray-500 text-center">
+      <div className="border-t border-gray-200 p-4 mb-1.5">
+        <div className="text-xs text-blue-500 text-center mb-2">
+          <Link href="https://docs-domi-health.vercel.app/">Documentation</Link>
+        </div>
+        <div className="text-xs text-gray-500 text-center mb-2">
           Healthcare Management System
+        </div>
+        <div className="text-xs text-gray-500 text-center">
+          &copy; {new Date().getFullYear()} Domi Health. All rights reserved.
         </div>
       </div>
     </div>
